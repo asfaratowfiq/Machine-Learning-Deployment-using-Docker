@@ -5,7 +5,7 @@ FROM continuumio/anaconda3:4.4.0
 COPY . /usr/ML/app
 
 #Expose the port within docker 
-EXPOSE 5000
+EXPOSE 8000
 
 #Set current working directory
 WORKDIR /usr/ML/app
