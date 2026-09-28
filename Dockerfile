@@ -1,17 +1,11 @@
-#Mention the base image 
-FROM continuumio/anaconda3:4.4.0
+FROM python:3.8-slim
 
-#Copy the current folder structure and content to docker folder
 COPY . /usr/ML/app
 
-#Expose the port within docker 
 EXPOSE 8000
 
-#Set current working directory
 WORKDIR /usr/ML/app
 
-#Install the required libraries
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-#container start up command
-CMD python flask_api.py
+CMD gunicorn --bind 0.0.0.0:8000 --workers 1 flask_api:app
