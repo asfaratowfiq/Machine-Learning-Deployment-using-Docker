@@ -1,4 +1,4 @@
-FROM python:3.8-slim
+FROM continuumio/anaconda3:4.4.0
 
 COPY . /usr/ML/app
 
@@ -6,6 +6,6 @@ EXPOSE 8000
 
 WORKDIR /usr/ML/app
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 CMD python flask_api.py
