@@ -6,7 +6,7 @@ metadata:
   labels:
     app: ml-deployment
 spec:
-  replicas: 3
+  replicas: 2
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -26,3 +26,10 @@ spec:
           image: aksregistryat.azurecr.io/machine-learning-deployment-using-docker:15ea65df9442ac4ea505d28144bb6805f10f1949
           imagePullPolicy: IfNotPresent
           resources: {}
+          volumeMounts:
+            - name: ml-storage
+              mountPath: /mnt/data
+      volumes:
+        - name: ml-storage
+          persistentVolumeClaim:
+            claimName: podpvc
